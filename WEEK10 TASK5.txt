@@ -1,0 +1,159 @@
+
+import java.util.Scanner;
+
+class Node {
+    String song;
+    Node next;
+
+    Node(String song) {
+        this.song = song;
+        this.next = null;
+    }
+}
+
+public class Main {
+    Node head = null;
+
+    // Add a song
+    void addSong(String song) {
+        Node newNode = new Node(song);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+
+            temp.next = newNode;
+        }
+
+        System.out.println(song + " added to playlist.");
+    }
+
+    // Remove a song
+    void removeSong(String song) {
+        if (head == null) {
+            System.out.println("Playlist is empty.");
+            return;
+        }
+
+        if (head.song.equalsIgnoreCase(song)) {
+            head = head.next;
+            System.out.println(song + " removed from playlist.");
+            return;
+        }
+
+        Node temp = head;
+
+        while (temp.next != null &&
+               !temp.next.song.equalsIgnoreCase(song)) {
+            temp = temp.next;
+        }
+
+        if (temp.next == null) {
+            System.out.println("Song not found.");
+        } else {
+            temp.next = temp.next.next;
+            System.out.println(song + " removed from playlist.");
+        }
+    }
+
+    // Display playlist
+    void displayPlaylist() {
+        if (head == null) {
+            System.out.println("Playlist is empty.");
+            return;
+        }
+
+        Node temp = head;
+        System.out.println("Music Playlist:");
+
+        while (temp != null) {
+            System.out.println(temp.song);
+            temp = temp.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Main playlist = new Main();
+
+        while (true) {
+            System.out.println("\n1. Add Song");
+            System.out.println("2. Remove Song");
+            System.out.println("3. Display Playlist");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter song name: ");
+                    String add = sc.nextLine();
+                    playlist.addSong(add);
+                    break;
+
+                case 2:
+                    System.out.print("Enter song name to remove: ");
+                    String remove = sc.nextLine();
+                    playlist.removeSong(remove);
+                    break;
+
+                case 3:
+                    playlist.displayPlaylist();
+                    break;
+
+                case 4:
+                    System.out.println("Exiting playlist.");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+    }
+}
+
+
+SAMPLE INPUT
+1
+Shape of You
+1
+Perfect
+1
+Believer
+3
+2
+Perfect
+3
+4
+
+
+SAMPLE OUTPUT
+1. Add Song
+2. Remove Song
+3. Display Playlist
+4. Exit
+Enter your choice: 1
+Enter song name: Shape of You
+Shape of You added to playlist.
+
+Enter your choice: 1
+Enter song name: Perfect
+Perfect added to playlist.
+
+Enter your choice: 1
+Enter song name: Believer
+Believer added to playlist.
+
+Enter your choice: 3
+Music Playlist:
+Shape of You
+Perfect
+Believer

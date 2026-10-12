@@ -1,0 +1,52 @@
+
+import java.util.Stack;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Stack<String> history = new Stack<>();
+
+        System.out.print("Enter number of pages visited: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter page name: ");
+            String page = sc.nextLine();
+            history.push(page);
+        }
+
+        System.out.println("\nBrowser History: " + history);
+
+        System.out.print("Press Back button? (yes/no): ");
+        String choice = sc.nextLine();
+
+        if (choice.equalsIgnoreCase("yes")) {
+            if (!history.isEmpty()) {
+                String page = history.pop();
+                System.out.println("Back from page: " + page);
+            } else {
+                System.out.println("No pages in history.");
+            }
+        }
+
+        System.out.println("Updated Browser History: " + history);
+
+        sc.close();
+    }
+}
+
+
+SAMPLE INPUT
+Enter number of pages visited: 3
+Enter page name: Google
+Enter page name: YouTube
+Enter page name: GitHub
+Press Back button? (yes/no): yes
+
+
+SAMPLE OUTPUT
+Browser History: [Google, YouTube, GitHub]
+Back from page: GitHub
+Updated Browser History: [Google, YouTube]

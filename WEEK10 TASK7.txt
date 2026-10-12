@@ -1,0 +1,40 @@
+
+import java.util.TreeSet;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        TreeSet<Integer> marks = new TreeSet<>();
+
+        System.out.print("Enter number of marks: ");
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter mark: ");
+            int mark = sc.nextInt();
+            marks.add(mark);
+        }
+
+        System.out.println("Unique marks in ascending order:");
+        System.out.println(marks);
+
+        sc.close();
+    }
+}
+
+
+SAMPLE INPUT
+Enter number of marks: 6
+Enter mark: 85
+Enter mark: 70
+Enter mark: 90
+Enter mark: 85
+Enter mark: 60
+Enter mark: 70
+
+
+SAMPLE OUTPUT
+Unique marks in ascending order:
+[60, 70, 85, 90]
